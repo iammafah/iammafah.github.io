@@ -4,9 +4,11 @@
   <img 
     src="https://res.cloudinary.com/darzb0s3m/image/upload/v1768674744/ChatGPT_Image_Jan_18_2026_12_01_27_AM_hbx8ec.png"
     alt="iammafah backend portfolio preview"
-    style="max-width: 480px; width: 100%;"
+    width="420"
+    height="240"
   >
 </p>
+
 
 🚀 **Backend Developer (Python) & Automation Engineer**  
 **Secure APIs · Backend Systems · Automation · Authentication · Scalable Architecture**
