@@ -1,9 +1,9 @@
 # iammafah.site
 
-🚀 **Backend Developer & Automation Engineer**  
-Secure APIs · Backend Systems · Automation · Authentication · Scalable Architecture
+🚀 **Backend Developer  & Automation Engineer**  
+**Secure APIs · Backend Systems · Automation · Authentication · Scalable Architecture**
 
-🌐 Live: https://iammafah.site
+🌐 **Live:** https://iammafah.site
 
 ---
 
@@ -11,92 +11,105 @@ Secure APIs · Backend Systems · Automation · Authentication · Scalable Archi
 
 This repository contains the source code for my personal portfolio website.
 
-I am a backend-focused developer specializing in designing and building
-secure, scalable, and production-ready systems.  
-The purpose of this site is to clearly showcase my backend expertise,
-real-world projects, and architectural thinking.
+I am **Abdullah Shahid**, a **backend-focused Python developer** who builds
+**secure, scalable, and production-ready backend systems**.
+
+This website uses a **lightweight static frontend** to present
+**real-world backend projects, APIs, automation systems, and system design thinking**.
+All backend services showcased here are developed, deployed, and maintained independently.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **HTML5** – Semantic and accessible structure  
-- **CSS3** – Custom dark UI, fully responsive  
-- **JavaScript (Vanilla)** – UI interactions & logic  
-- **Google Fonts (Poppins)**  
-- **Ionicons**
+### Backend
+- **Python** – Core backend language & business logic  
+- **SQL** – Data modeling & querying  
+- **MySQL** – Relational database for structured data  
+- **PostgreSQL** – Advanced relational database for production systems  
+- **Linux** – Server environment & deployments  
+- **Git & GitHub** – Version control & collaboration  
+- **REST APIs** – Service communication layer  
 
-> No frameworks.  
-> No unnecessary dependencies.  
-> Clean, fast, and maintainable by design.
+### Frontend (Minimal – for presentation only)
+- **HTML5** – Semantic structure  
+- **CSS3** – Responsive UI  
+- **JavaScript** – Minimal client-side logic  
+
+> Backend-first mindset  
+> No over-engineering  
+> Clean, scalable, maintainable systems
 
 ---
 
-## 📂 Pages
-
-- **Home / About** – Overview of skills & expertise  
-- **Portfolio** – Backend systems, APIs, automation projects  
-- **Resume** – Experience, skills, and technical focus  
-- **Contact** – Project inquiry & collaboration entry point  
-
----
-
-## 🔐 Core Focus Areas
+## 🧠 Backend & Automation Expertise
 
 - Backend architecture & system design  
 - REST API development  
-- Authentication & authorization (JWT, OAuth, OTP)  
-- Secure data handling & validation  
-- Database design & optimization  
-- Automation & bot systems (Telegram, workflows)  
-- AI-powered backend automation (concepts & implementations)  
-- Production-ready security practices  
+- Authentication & authorization  
+  - JWT-based auth  
+  - OAuth integrations  
+  - OTP-based flows  
+- Secure data validation & handling  
+- Database-driven backend systems  
+- Automation & background workflows  
+- Telegram bot backends  
+- Chatbot backend logic  
+- Production-grade security practices  
+
+---
+
+## 📂 Website Sections
+
+- **Home / About** – Backend identity & philosophy  
+- **Portfolio** – APIs, backend systems & automation projects  
+- **Resume** – Technical experience & skills  
+- **Contact** – Backend work & collaboration entry point  
 
 ---
 
 ## 📈 Performance & SEO
 
-- Lightweight static build  
-- SEO-optimized meta tags  
-- Structured content for search engines  
-- Fast load time & mobile-first UI  
+- Lightweight static frontend  
+- SEO-optimized metadata  
+- Backend-focused structured content  
+- Fast load times & mobile-first design  
 
 ---
 
-## 🌐 Hosting
+## 🌐 Hosting & Deployment
 
-The site is deployed with a custom domain:
+Deployed on a custom domain:
 
 **https://iammafah.site**
 
-Deployment-ready for:
-- GitHub Pages  
-- Netlify  
-- Vercel  
+### 🚀 Deployment-ready environments:
+- Linux VPS (DigitalOcean / AWS / Azure)
+- Docker-based deployments
+- Nginx + Gunicorn production setups
 
 ---
 
 ## 📬 Contact
 
-If you're looking to build:
-- Secure backend systems  
-- APIs  
-- Automation or bot solutions  
-- Authentication & authorization flows  
+For backend-related work:
+- Python backend systems  
+- API development  
+- Automation & bot backends  
+- Authentication & security  
 
-You can reach out via the contact form on the website or through:
-
-- GitHub: https://github.com/iammafah  
-- LinkedIn: https://www.linkedin.com/in/iammafah/  
+Connect with me:
+- **GitHub:** https://github.com/iammafah  
+- **LinkedIn:** https://www.linkedin.com/in/iammafah/  
 
 ---
 
 ## 📄 License
 
 ### Code License
-This project’s **source code** is licensed under the **MIT License**.
+The **source code** of this website is licensed under the **MIT License**.
 
-You are free to use, modify, and distribute the code with proper attribution.
+You are free to use and modify the code with proper attribution.
 
 ---
 
@@ -106,8 +119,8 @@ All personal content, text, project descriptions, branding,
 and visual identity belong to **Abdullah Shahid**.
 
 While the code is open-source under MIT,
-**copying personal content or branding directly is not permitted**.
+**reusing personal branding or content is not permitted**.
 
 ---
 
-© 2026 Abdullah Shahid
+© Abdullah Shahid
