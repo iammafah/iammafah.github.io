@@ -1,3 +1,15 @@
+/* TEAM */
 Developer: Abdullah Shahid
 Role: Backend Developer & Automation Engineer
 Website: https://iammafah.site
+Location: India
+
+/* CONTACT */
+Email: iammafah@gmail.com
+GitHub: https://github.com/iammafah
+LinkedIn: https://www.linkedin.com/in/iammafah/
+
+
+
+/* THANKS */
+Thanks to the open-source community and the modern web.

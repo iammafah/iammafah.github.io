@@ -1977,3 +1977,40 @@ textarea.form-input::-webkit-resizer { display: none; }
   left: 0;
   color: var(--orange-yellow-crayola);
 }
+/* ================= FOOTER ================= */
+
+
+
+/* ===== Footer hard fix (override global block styles) ===== */
+
+.site-footer a,
+.site-footer span {
+  display: inline;          /* 🔥 THIS FIXES THE ISSUE */
+}
+.padding-block {
+  padding-top: 16px;
+  
+}
+.footer-copy,
+.footer-legal {
+  margin: 0;
+  padding-top: 1px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.footer-legal {
+  font-size: 12px;
+  color: var(--light-gray-70);
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: var(--light-gray);
+}
+
+.footer-legal a {
+  color: var(--orange-yellow-crayola);
+  text-decoration: none;
+}
+

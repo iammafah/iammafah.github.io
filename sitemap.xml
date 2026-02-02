@@ -3,27 +3,37 @@
 
   <url>
     <loc>https://iammafah.site/</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-02-03</lastmod>
   </url>
 
   <url>
-    <loc>https://iammafah.site/about.html</loc>
+    <loc>https://iammafah.site/portfolio/</loc>
+    <lastmod>2026-02-03</lastmod>
   </url>
 
   <url>
-    <loc>https://iammafah.site/portfolio.html</loc>
+    <loc>https://iammafah.site/resume/</loc>
+    <lastmod>2026-02-03</lastmod>
   </url>
 
   <url>
-    <loc>https://iammafah.site/resume.html</loc>
+    <loc>https://iammafah.site/blog/</loc>
+    <lastmod>2026-02-03</lastmod>
   </url>
 
   <url>
-    <loc>https://iammafah.site/blog.html</loc>
+    <loc>https://iammafah.site/contact/</loc>
+    <lastmod>2026-02-03</lastmod>
   </url>
 
   <url>
-    <loc>https://iammafah.site/contact.html</loc>
+    <loc>https://iammafah.site/private-policy/</loc>
+    <lastmod>2026-02-03</lastmod>
+  </url>
+
+  <url>
+    <loc>https://iammafah.site/terms/</loc>
+    <lastmod>2026-02-03</lastmod>
   </url>
 
 </urlset>
