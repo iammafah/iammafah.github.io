@@ -1,5 +1,9 @@
 'use strict';
 
+// === GLOBAL CONFIG ===
+// change ONLY this if structure changes
+
+
 /* ==================================================
    COMMON UTILS
 ================================================== */
@@ -188,21 +192,28 @@ function initContactForm() {
 document.addEventListener("DOMContentLoaded", initContactForm);
 
 
-/* ==================================================
-   LOAD HEADER + FOOTER (MOST IMPORTANT PART)
-================================================== */
+
+
+
 
 async function loadLayout() {
+
   // HEADER
-  const headerRes = await fetch(`${window.BASE_PATH}/partials/header.html`);
-  document.getElementById("header").innerHTML = await headerRes.text();
+  const headerEl = document.getElementById("header");
+  if (headerEl) {
+    const res = await fetch(`${window.BASE_PATH}/partials/header.html`);
+    headerEl.innerHTML = await res.text();
+    initSidebar(); // ✔ sirf header wale pages pe effect
+  }
 
   // FOOTER
-  const footerRes = await fetch(`${window.BASE_PATH}/partials/footer.html`);
-  document.getElementById("footer").innerHTML = await footerRes.text();
-
-  initSidebar();
+  const footerEl = document.getElementById("footer");
+  if (footerEl) {
+    const res = await fetch(`${window.BASE_PATH}/partials/footer.html`);
+    footerEl.innerHTML = await res.text();
+  }
 }
+
 
 /* ==================================================
    APP INIT

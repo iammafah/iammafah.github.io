@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ================= SEO ================= -->
+    <title>Telegram Bot for Business | Portfolio – Abdullah Shahid</title>
+
+    <meta name="description"
+        content="Telegram bot project by Abdullah Shahid focused on lead generation and service sales automation. Built with a backend-first approach for scalable business workflows.">
+
+    <meta name="author" content="Abdullah Shahid">
+    <meta name="robots" content="index, follow">
+    <link rel="manifest" href="../../manifest.json">
+
+    <!-- ✅ Correct canonical for NEW structure -->
+    <link rel="canonical" href="https://iammafah.site/portfolio/telegram/">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- ================= FAVICON ================= -->
+    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="../../favicon/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../../favicon/favicon-96x96.png">
+
+    <!-- ================= FONTS ================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- ================= OPEN GRAPH ================= -->
+    <meta property="og:title" content="Telegram Bot for Business | Portfolio – Abdullah Shahid">
+    <meta property="og:description"
+        content="A Telegram bot built to generate leads and automate service sales. Backend-driven project by Abdullah Shahid.">
+    <meta property="og:url" content="https://iammafah.site/portfolio/telegram/">
+    <meta property="og:type" content="article">
+    <meta property="og:image"
+        content="https://res.cloudinary.com/darzb0s3m/image/upload/v1770244086/ChatGPT_Image_Feb_5_2026_03_56_57_AM_p78p8v.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- ================= TWITTER ================= -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Telegram Bot for Business | Abdullah Shahid">
+    <meta name="twitter:description"
+        content="Portfolio project showcasing a Telegram bot for lead generation and service sales automation.">
+    <meta name="twitter:image"
+        content="https://res.cloudinary.com/darzb0s3m/image/upload/v1770244086/ChatGPT_Image_Feb_5_2026_03_56_57_AM_p78p8v.png">
+
+    <!-- ================= STRUCTURED DATA ================= -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Telegram Bot for Business",
+    "url": "https://iammafah.site/portfolio/telegram/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Telegram",
+    "description": "A Telegram bot designed for lead generation and service sales automation, built with a backend-first architecture.",
+    "author": {
+      "@type": "Person",
+      "name": "Abdullah Shahid",
+      "alternateName": "iammafah",
+      "url": "https://iammafah.site/",
+      "sameAs": [
+        "https://github.com/iammafah",
+        "https://www.linkedin.com/in/iammafah/",
+        "https://twitter.com/iammafah",
+        "https://instagram.com/iammafah"
+      ]
+    }
+  }
+  </script>
+
+
+
+  <style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* COLOR SYSTEM */
+:root {
+    --primary: #229ED9;
+    --primary-dark: #1a86b5;
+    --bg: #f1f7fc;
+    --text-dark: #0f172a;
+    --text-muted: #475569;
+    --card-bg: #ffffff;
+    --border: rgba(0,0,0,0.06);
+}
+
+/* BODY */
+body {
+    background: linear-gradient(180deg, var(--bg), #ffffff);
+    color: var(--text-dark);
+}
+
+/* HEADER */
+.project-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+}
+
+.header-left {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.header-left img {
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.header-text h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.header-text p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* MAIN CONTAINER */
+.container {
+    max-width: 1250px;
+    margin: auto;
+    padding: 50px 20px 70px;
+}
+
+/* BACK BUTTON */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* PROJECT CARD */
+.project-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 34px;
+    border: 1px solid var(--border);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+    max-width: 980px;
+    margin: auto;
+}
+
+.project-card img {
+    width: 100%;
+    border-radius: 14px;
+    margin-bottom: 22px;
+}
+
+.project-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+.project-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+/* BUTTON GROUP */
+.btn-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-outline {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* MOBILE LAYOUT FIX */
+@media (max-width: 768px) {
+
+    .container {
+        padding: 26px 14px 40px;
+    }
+
+    .project-card {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .header-left img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .header-text h1 {
+        font-size: 1rem;
+    }
+
+    /* PRIMARY BUTTON FULL WIDTH */
+    .btn-group .btn-primary {
+        flex: 0 0 100%;
+        text-align: center;
+    }
+
+    /* TWO BUTTONS BELOW */
+    .btn-group .btn-outline {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* LARGE DESKTOP */
+@media (min-width: 1400px) {
+    .project-card {
+        max-width: 1100px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="project-header">
+        <div class="header-left">
+            <img src="https://res.cloudinary.com/darzb0s3m/image/upload/v1770243899/free-telegram-3d-icon-png-download-6786108_fgqlz8.webp"
+                alt="Telegram Bot Logo" loading="lazy" />
+            <div class="header-text">
+                <h1>Telegram Bot for Business</h1>
+                <p>Lead generation & service sales automation</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="container">
+
+        <a href="../../portfolio/" class="back-btn">← Back to Projects</a>
+
+        <section class="project-card">
+            <img src="https://res.cloudinary.com/darzb0s3m/image/upload/v1770244086/ChatGPT_Image_Feb_5_2026_03_56_57_AM_p78p8v.png"
+                alt="Telegram Lead Generation Bot Preview" loading="lazy" />
+
+            <h2>Lead Generation Bot</h2>
+
+            <p>
+                An automation-first Telegram bot built to generate leads
+                and turn chats into service sales automatically.
+            </p>
+
+            <div class="btn-group">
+                <a href="https://t.me/iammafahbot" class="btn btn-primary" target="_blank"
+                    rel="noopener noreferrer">Live Bot Demo</a>
+
+                <a href="../../contact/" class="btn btn-outline">Contact Me</a>
+
+                <a href="https://www.linkedin.com/in/iammafah/" class="btn btn-outline" target="_blank"
+                    rel="noopener noreferrer">LinkedIn</a>
+
+                
+            </div>
+        </section>
+        <section class="project-card">
+            <img src="https://res.cloudinary.com/darzb0s3m/image/upload/v1770244086/ChatGPT_Image_Feb_5_2026_03_56_57_AM_p78p8v.png"
+                alt="Telegram Service Sales Bot Preview" loading="lazy" />
+
+            <h2>Sales & Service Automation Bot</h2>
+
+            <p>
+                A Telegram-based service selling bot that presents offerings,
+                answers user queries, and guides prospects through a structured
+                flow to convert interest into paid services.
+            </p>
+
+            <div class="btn-group">
+                <a href="https://t.me/iammafahbot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                    Try Sales Flow
+                </a>
+
+                <a href="/contact/" class="btn btn-outline">Contact Me</a>
+
+                <a href="https://www.linkedin.com/in/iammafah/" class="btn btn-outline" target="_blank"
+                    rel="noopener noreferrer">LinkedIn</a>
+
+                
+            </div>
+        </section>
+
+        
+        
+        
+    
+    </main>
+    
+    <script src="../../assets/js/script.js"></script>
+
+</body>
+
+</html>

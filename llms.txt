@@ -1,0 +1,35 @@
+Site: https://iammafah.site
+Owner: Abdullah Shahid
+Role: Backend Developer & Automation Engineer
+
+Description:
+Personal portfolio focused on backend development, automation systems,
+Telegram bots, APIs, databases, and production-ready backend architecture.
+
+Primary Topics:
+backend development
+API design
+automation bots
+telegram bots
+system design
+databases
+authentication systems
+deployment
+linux servers
+
+Sitemap:
+https://iammafah.site/sitemap.xml
+
+Key Pages:
+https://iammafah.site/
+https://iammafah.site/resume/
+https://iammafah.site/portfolio/
+https://iammafah.site/portfolio/telegram/
+https://iammafah.site/blog/
+https://iammafah.site/contact/
+
+Profiles:
+https://github.com/iammafah
+https://www.linkedin.com/in/iammafah/
+https://youtube.com/@iammafah
+https://t.me/iammafah

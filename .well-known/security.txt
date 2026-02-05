@@ -1,0 +1,5 @@
+Contact: mailto:iammafah@gmail.com
+Canonical: https://iammafah.site/.well-known/security.txt
+Policy: https://iammafah.site/private-policy/
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: en

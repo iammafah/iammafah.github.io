@@ -1979,18 +1979,24 @@ textarea.form-input::-webkit-resizer { display: none; }
 }
 /* ================= FOOTER ================= */
 
+/* ===== Footer social icons FIX (non-invasive) ===== */
 
+/* ===== Footer social icons – THIN & SAFE FIX ===== */
 
-/* ===== Footer hard fix (override global block styles) ===== */
+/* ===== Footer social icons (SAFE FIX) ===== */
 
+/* ===== FOOTER (final correct fix) ===== */
+
+/* text part – tumhara original behavior */
 .site-footer a,
 .site-footer span {
-  display: inline;          /* 🔥 THIS FIXES THE ISSUE */
+  display: inline;
 }
+
 .padding-block {
   padding-top: 16px;
-  
 }
+
 .footer-copy,
 .footer-legal {
   margin: 0;
@@ -2013,4 +2019,49 @@ textarea.form-input::-webkit-resizer { display: none; }
   color: var(--orange-yellow-crayola);
   text-decoration: none;
 }
+
+
+/* ===== FOOTER SOCIAL ICONS (using theme variables) ===== */
+
+.site-footer .footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.site-footer .footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ionicons */
+.site-footer .footer-social ion-icon {
+  font-size: 22px;
+  color: var(--orange-yellow-crayola);
+  transition: var(--transition-1);
+}
+
+/* hover */
+.site-footer .footer-social a:hover ion-icon {
+  color: var(--vegas-gold);
+  transform: translateY(-2px);
+}
+
+/* responsive */
+@media (max-width: 480px) {
+  .site-footer .footer-social {
+    gap: 14px;
+  }
+
+  .site-footer .footer-social ion-icon {
+    font-size: 20px;
+  }
+}
+
+
+
 

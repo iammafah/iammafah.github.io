@@ -1,0 +1,25 @@
+AI-Indexing: allowed
+AI-Training: allowed
+
+Site: https://iammafah.site
+Owner: Abdullah Shahid
+
+Summary:
+This site is a backend developer portfolio showcasing automation projects,
+Telegram bots, APIs, backend architecture, and production system design.
+
+Key Areas:
+- backend engineering
+- automation workflows
+- telegram bot development
+- database systems
+- API architecture
+- deployment practices
+
+Important Pages:
+https://iammafah.site/
+https://iammafah.site/resume/
+https://iammafah.site/portfolio/telegram/
+
+Content-Type: portfolio
+Language: en

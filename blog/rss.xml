@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Abdullah Shahid Blog</title>
+    <link>https://iammafah.site/blog/</link>
+    <description>Backend development and automation articles.</description>
+    <language>en-us</language>
+
+    <item>
+      <title>Scaling Backend Systems: What Actually Breaks First</title>
+      <link>
+        https://medium.com/@shivambhadani_/system-design-for-beginners-everything-you-need-in-one-article-c74eb702540b
+      </link>
+      <description>
+        A practical look at backend scalability challenges including bottlenecks, databases, caching, and system limits.
+      </description>
+      <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+        <title>Linux & Deployment Essentials for Backend Developers</title>
+        <link>https://www.linuxfoundation.org/blog</link>
+        <description>
+            Core Linux concepts, server setup basics, and deployment practices required to run backend systems in production.
+        </description>
+        <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
+        </item>
+
+    <item>
+    <title>JWT, Sessions, and Token Security in Production Backends</title>
+        <link>
+            https://medium.com/@rohitraj1912000/demystifying-authentication-and-authorization-in-backend-systems-52489c3fae8c
+        </link>
+        <description>
+            Practical authentication strategies covering JWTs, sessions, access control, and securing backend APIs.
+        </description>
+        <pubDate>Fri, 18 Apr 2025 00:00:00 GMT</pubDate>
+    </item>
+
+    <item>
+        <title>Designing REST APIs That Don’t Break in Production</title>
+        <link>
+            https://medium.com/api-dev-tips/rest-api-design-endpoints-resources-and-data-patterns-0938df6263cd
+        </link>
+        <description>
+            API design principles focused on versioning, validation, error handling, and long-term maintainability.
+        </description>
+        <pubDate>Wed, 02 Jul 2025 00:00:00 GMT</pubDate>
+    </item>
+
+    <item>
+        <title>From Request to Response: Inside a Production Backend</title>
+        <link>
+            https://medium.com/@hnasr/the-journey-of-a-request-to-the-backend-c3de704de223
+        </link>
+        <description>
+            A breakdown of how backend systems process requests, handle business logic, and return responses.
+        </description>
+        <pubDate>Mon, 10 Feb 2025 00:00:00 GMT</pubDate>
+    </item>
+
+
+  </channel>
+</rss>
