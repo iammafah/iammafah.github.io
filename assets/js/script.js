@@ -1,31 +1,26 @@
 'use strict';
 
-// === GLOBAL CONFIG ===
-// change ONLY this if structure changes
-
-
 /* ==================================================
    COMMON UTILS
 ================================================== */
 
-// Safe toggle
 function toggleActive(el) {
   if (el) el.classList.toggle('active');
 }
 
 /* ==================================================
-   HEADER / SIDEBAR INIT  (IMPORTANT)
+   SIDEBAR
 ================================================== */
 
 function initSidebar() {
   const sidebar = document.querySelector('[data-sidebar]');
   const sidebarBtn = document.querySelector('[data-sidebar-btn]');
 
-  if (sidebar && sidebarBtn) {
-    sidebarBtn.addEventListener('click', () => {
-      toggleActive(sidebar);
-    });
-  }
+  if (!sidebar || !sidebarBtn) return;
+
+  sidebarBtn.addEventListener('click', () => {
+    toggleActive(sidebar);
+  });
 }
 
 /* ==================================================
@@ -132,16 +127,6 @@ function initContactForm() {
 
   if (!form || !btn || !inputs.length) return;
 
-  const showError = (name, message) => {
-    const el = document.querySelector(`[data-error="${name}"]`);
-    if (el) el.textContent = message;
-  };
-
-  const clearErrors = () => {
-    document.querySelectorAll('[data-error]')
-      .forEach(e => e.textContent = "");
-  };
-
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       form.checkValidity()
@@ -153,11 +138,9 @@ function initContactForm() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    clearErrors();
     status.textContent = "";
-
     btn.setAttribute('disabled', '');
-    btn.innerText = "Sending...";
+    btn.querySelector("span").innerText = "Sending...";
 
     const payload = {
       FullName: form.fullname.value.trim(),
@@ -178,11 +161,6 @@ function initContactForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        if (data.errors) {
-          Object.entries(data.errors).forEach(([key, val]) => {
-            showError(key.toLowerCase(), val);
-          });
-        }
         throw new Error(data.message || "Failed");
       }
 
@@ -190,38 +168,30 @@ function initContactForm() {
       status.className = "form-status success";
 
       form.reset();
-      btn.innerText = "Send Message";
+      btn.querySelector("span").innerText = "Send Message";
       btn.setAttribute('disabled', '');
 
     } catch (err) {
       status.textContent = err.message;
       status.className = "form-status error";
-      btn.innerText = "Send Message";
+      btn.querySelector("span").innerText = "Send Message";
       btn.removeAttribute('disabled');
     }
   });
 }
 
-
-// Run after DOM load
-document.addEventListener("DOMContentLoaded", initContactForm);
-
-
-
-
-
+/* ==================================================
+   LOAD PARTIALS
+================================================== */
 
 async function loadLayout() {
-
-  // HEADER
   const headerEl = document.getElementById("header");
   if (headerEl) {
     const res = await fetch(`${window.BASE_PATH}/partials/header.html`);
     headerEl.innerHTML = await res.text();
-    initSidebar(); // ✔ sirf header wale pages pe effect
+    initSidebar();
   }
 
-  // FOOTER
   const footerEl = document.getElementById("footer");
   if (footerEl) {
     const res = await fetch(`${window.BASE_PATH}/partials/footer.html`);
@@ -229,14 +199,13 @@ async function loadLayout() {
   }
 }
 
-
 /* ==================================================
    APP INIT
 ================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  loadLayout();          // header/footer
-  initTestimonials();   // modal
-  initPortfolioFilter();// portfolio
-  initContactForm();    // contact form
+  loadLayout();
+  initTestimonials();
+  initPortfolioFilter();
+  initContactForm();
 });
