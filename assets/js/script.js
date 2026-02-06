@@ -125,29 +125,40 @@ function initPortfolioFilter() {
 ================================================== */
 
 function initContactForm() {
-  const form = document.querySelector('[data-form]');               // form select
-  const inputs = document.querySelectorAll('[data-form-input]');    // all inputs
-  const btn = document.querySelector('[data-form-btn]');            // submit button
+  const form = document.querySelector('[data-form]');
+  const inputs = document.querySelectorAll('[data-form-input]');
+  const btn = document.querySelector('[data-form-btn]');
+  const status = document.querySelector('[data-form-status]');
 
   if (!form || !btn || !inputs.length) return;
 
-  // Enable / disable button based on form validity
+  const showError = (name, message) => {
+    const el = document.querySelector(`[data-error="${name}"]`);
+    if (el) el.textContent = message;
+  };
+
+  const clearErrors = () => {
+    document.querySelectorAll('[data-error]')
+      .forEach(e => e.textContent = "");
+  };
+
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       form.checkValidity()
-        ? btn.removeAttribute('disabled')   // form valid → enable button
-        : btn.setAttribute('disabled', ''); // form invalid → disable button
+        ? btn.removeAttribute('disabled')
+        : btn.setAttribute('disabled', '');
     });
   });
 
-  // Handle form submit
   form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // stop page reload
+    e.preventDefault();
+
+    clearErrors();
+    status.textContent = "";
 
     btn.setAttribute('disabled', '');
     btn.innerText = "Sending...";
 
-    // Payload EXACT backend ke hisaab se
     const payload = {
       FullName: form.fullname.value.trim(),
       Email: form.email.value.trim(),
@@ -159,9 +170,7 @@ function initContactForm() {
         "https://socialcore-backend.onrender.com/iammafah/api/contacts",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         }
       );
@@ -169,24 +178,30 @@ function initContactForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || "Something went wrong");
+        if (data.errors) {
+          Object.entries(data.errors).forEach(([key, val]) => {
+            showError(key.toLowerCase(), val);
+          });
+        }
+        throw new Error(data.message || "Failed");
       }
 
-      // ✅ Professional success message (NO sales / no money vibe)
-      alert("✅ Your message has been sent successfully.\nI’ll review it and get back to you shortly.");
+      status.textContent = "Your message was sent successfully.";
+      status.className = "form-status success";
 
       form.reset();
       btn.innerText = "Send Message";
       btn.setAttribute('disabled', '');
 
     } catch (err) {
-      // ❌ Clean error message
-      alert(err.message || "❌ Unable to send message. Please try again later.");
+      status.textContent = err.message;
+      status.className = "form-status error";
       btn.innerText = "Send Message";
       btn.removeAttribute('disabled');
     }
   });
 }
+
 
 // Run after DOM load
 document.addEventListener("DOMContentLoaded", initContactForm);

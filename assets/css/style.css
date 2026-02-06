@@ -2063,5 +2063,21 @@ textarea.form-input::-webkit-resizer { display: none; }
 }
 
 
+.error-text {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 4px;
+}
 
+.form-status {
+  margin-top: 12px;
+  font-size: 14px;
+}
 
+.form-status.success {
+  color: #4caf50;
+}
+
+.form-status.error {
+  color: #ff6b6b;
+}

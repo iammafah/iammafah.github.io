@@ -160,20 +160,25 @@
                         <div class="input-wrapper">
                             <input type="text" name="fullname" class="form-input" placeholder="Full name" required
                                 data-form-input>
+                            <small class="error-text" data-error="fullname"></small>
 
                             <input type="email" name="email" class="form-input" placeholder="Email address" required
                                 data-form-input>
+                            <small class="error-text" data-error="email"></small>
                         </div>
 
                         <textarea name="message" class="form-input" placeholder="Your Message" required
                             data-form-input></textarea>
+                        <small class="error-text" data-error="message"></small>
 
                         <button class="form-btn" type="submit" disabled data-form-btn>
-                            <ion-icon name="paper-plane"></ion-icon>
                             <span>Send Message</span>
                         </button>
 
+                        <p class="form-status" data-form-status></p>
+
                     </form>
+
 
                 </section>
                 <section id="footer"></section>
