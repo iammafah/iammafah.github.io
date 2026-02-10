@@ -120,48 +120,59 @@ function initPortfolioFilter() {
 ================================================== */
 
 function initContactForm() {
-  const form = document.querySelector('[data-form]');
-  const inputs = document.querySelectorAll('[data-form-input]');
-  const btn = document.querySelector('[data-form-btn]');
-  const status = document.querySelector('[data-form-status]');
+  const form = document.querySelector('[data-form]'); // form select
+  const inputs = document.querySelectorAll('[data-form-input]'); // inputs
+  const btn = document.querySelector('[data-form-btn]'); // submit button
+  const status = document.querySelector('[data-form-status]'); // status text
 
-  if (!form || !btn || !inputs.length) return;
+  if (!form || !btn || !inputs.length) return; // safety check
 
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       form.checkValidity()
-        ? btn.removeAttribute('disabled')
-        : btn.setAttribute('disabled', '');
+        ? btn.removeAttribute('disabled') // enable button
+        : btn.setAttribute('disabled', ''); // disable button
     });
   });
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
 
     status.textContent = "";
     btn.setAttribute('disabled', '');
     btn.querySelector("span").innerText = "Sending...";
 
     const payload = {
-      FullName: form.fullname.value.trim(),
-      Email: form.email.value.trim(),
-      Message: form.message.value.trim()
+      FullName: form.fullname.value.trim(), 
+      Email: form.email.value.trim(), 
+      Message: form.message.value.trim() 
     };
 
     try {
+      const controller = new AbortController(); // timeout controller
+      setTimeout(() => controller.abort(), 10000); // 10 sec timeout
+
       const res = await fetch(
         "https://socialcore-backend.onrender.com/iammafah/api/contacts",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(payload),
+          signal: controller.signal
         }
       );
 
-      const data = await res.json();
+      const text = await res.text(); // always read as text first
+
+      let data;
+      try {
+        data = JSON.parse(text); // try JSON parse
+      } catch {
+        throw new Error("Server temporarily unavailable");
+      }
 
       if (!res.ok) {
-        throw new Error(data.message || "Failed");
+        throw new Error(data.message || "Failed to send message");
       }
 
       status.textContent = "Your message was sent successfully.";
@@ -180,31 +191,46 @@ function initContactForm() {
   });
 }
 
+
+
 /* ==================================================
    LOAD PARTIALS
 ================================================== */
 
 async function loadLayout() {
-  const headerEl = document.getElementById("header");
-  if (headerEl) {
-    const res = await fetch(`${window.BASE_PATH}/partials/header.html`);
-    headerEl.innerHTML = await res.text();
-    initSidebar();
-  }
+  const base = window.BASE_PATH || ".";
 
-  const footerEl = document.getElementById("footer");
-  if (footerEl) {
-    const res = await fetch(`${window.BASE_PATH}/partials/footer.html`);
-    footerEl.innerHTML = await res.text();
+  try {
+    const headerEl = document.getElementById("header");
+    if (headerEl) {
+      const res = await fetch(`${base}/partials/header.html`);
+      headerEl.innerHTML = await res.text();
+
+      if (typeof initSidebar === "function") {
+        initSidebar();
+      }
+    }
+
+    const footerEl = document.getElementById("footer");
+    if (footerEl) {
+      const res = await fetch(`${base}/partials/footer.html`);
+      footerEl.innerHTML = await res.text();
+    }
+
+  } catch (err) {
+    console.error("Layout load failed:", err);
   }
 }
+
+
+
 
 /* ==================================================
    APP INIT
 ================================================== */
-
 document.addEventListener('DOMContentLoaded', () => {
   loadLayout();
+  initSidebar();
   initTestimonials();
   initPortfolioFilter();
   initContactForm();

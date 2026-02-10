@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SVG Hover Animation</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #111;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      position: relative;
+      width: 500px;
+      height: 300px;
+      background-image: url("https://picsum.photos/800/500");
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    /* SVG overlay */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-image: url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.25" fill-rule="evenodd"%3E%3Cpath d="M0 40L40 0H20L0 20M40 40V20L20 40"/%3E%3C/g%3E%3C/svg%3E');
+      transform: translateY(100%);
+      transition: transform 0.5s ease;
+    }
+
+    /* hover animation */
+    .card:hover .overlay {
+      transform: translateY(0);
+    }
+
+    .text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <div class="overlay"></div>
+    <div class="text">Hover Effect</div>
+  </div>
+
+  <script>
+    // optional JS animation trigger
+    const card = document.getElementById("card");
+
+    card.addEventListener("mouseenter", () => {
+      console.log("hover start");
+    });
+
+    card.addEventListener("mouseleave", () => {
+      console.log("hover end");
+    });
+  </script>
+
+</body>
+</html>
