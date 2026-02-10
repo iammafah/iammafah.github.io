@@ -89,7 +89,7 @@
 
         /* table container */
         .table-container {
-            max-height: 520px;
+            max-height: 450px;
             overflow-y: auto;
             border: 1px solid #eee;
             border-radius: 12px;
@@ -146,7 +146,7 @@
 
             td,
             th {
-                padding: 10px;
+                padding: 12px;
                 font-size: 13px;
             }
         }
@@ -160,15 +160,18 @@
     <div class="admin-container">
 
         <!-- back link -->
-        <a href="../index.html">Back to Home</a>
+        <a href="../contact/" class="back-btn">Back to Home</a>
 
         <div class="admin-header">Admin Contacts</div>
 
         <div class="card">
+            
 
             <div class="input-row">
                 <input id="adminIdInput" placeholder="Enter admin id">
                 <button onclick="loadContacts()">Show data</button>
+                <button onclick="downloadCSV()">Download CSV</button>
+
             </div>
 
             <div id="loader">Loading contacts...</div>

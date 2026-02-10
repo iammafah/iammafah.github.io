@@ -2081,3 +2081,89 @@ textarea.form-input::-webkit-resizer { display: none; }
 .form-status.error {
   color: #ff6b6b;
 }
+
+/* CONTACT PROFILE HEADER */
+
+/* CONTACT PROFILE HEADER */
+
+.contact-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* avatar */
+.contact-avatar {
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--jet);
+  box-shadow: var(--shadow-2);
+  margin-bottom: 9px;
+  transition: var(--transition-1);
+}
+
+.contact-avatar:hover {
+  transform: scale(1.04);
+}
+
+/* text */
+.contact-name {
+  margin-bottom: 0px;
+  letter-spacing: 0.3px;
+}
+
+.contact-intro {
+  max-width: 460px;
+  margin-bottom: 22px;
+  color: var(--light-gray);
+}
+
+/* ---------------- LINK BUTTONS ---------------- */
+
+/* mobile */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* desktop */
+@media (min-width: 768px) {
+
+  .contact-avatar {
+    width: 135px;
+    height: 135px;
+  }
+
+  .contact-intro {
+    font-size: var(--fs-5);
+  }
+
+  .contact-links {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scroll-behavior: smooth;
+  }
+
+  /* smooth scrollbar */
+  .contact-links::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .contact-links::-webkit-scrollbar-thumb {
+    background: var(--orange-yellow-crayola);
+    border-radius: 4px;
+  }
+
+  .contact-links .form-btn {
+    min-width: 170px;
+    flex-shrink: 0;
+    justify-content: center;
+  }
+}

@@ -1,4 +1,5 @@
 const API_URL = "https://socialcore-backend.onrender.com/iammafah/api/admin/contacts";
+const DOWNLOAD_URL = "https://socialcore-backend.onrender.com/iammafah/api/admin/contacts/download";
 
 let allContacts = [];
 let visibleCount = 10;
@@ -12,7 +13,7 @@ function showMessage(text, type = "error") {
     box.style.marginBottom = "10px";
     box.style.padding = "10px";
     box.style.borderRadius = "8px";
-    box.style.fontWeight = "500";
+    box.style.fontWeight = "500px";
     box.style.position = "relative";
 
     document.querySelector(".card").prepend(box);
@@ -43,16 +44,8 @@ async function loadContacts() {
       body: JSON.stringify({ admin_id: Number(adminId) })
     });
 
-    const text = await res.text();
+    const data = await res.json();
     loader.style.display = "none";
-
-    let data;
-    try {
-      data = JSON.parse(text);
-    } catch {
-      showMessage("Server waking up... try again");
-      return;
-    }
 
     if (!Array.isArray(data)) {
       showMessage(data.error || "Invalid admin");
@@ -97,4 +90,16 @@ function renderContacts() {
 function loadMore() {
   visibleCount += 10;
   renderContacts();
+}
+
+/* ================= CSV DOWNLOAD ================= */
+function downloadCSV() {
+  const adminId = document.getElementById("adminIdInput").value;
+
+  if (!adminId) {
+    showMessage("Enter admin id first");
+    return;
+  }
+
+  window.location.href = `${DOWNLOAD_URL}?admin_id=${adminId}`;
 }
