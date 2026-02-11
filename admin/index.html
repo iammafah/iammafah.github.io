@@ -159,18 +159,34 @@
 
     <div class="admin-container">
 
-        <!-- back link -->
         <a href="../contact/" class="back-btn">Back to Home</a>
 
         <div class="admin-header">Admin Contacts</div>
 
         <div class="card">
-            
 
             <div class="input-row">
                 <input id="adminIdInput" placeholder="Enter admin id">
                 <button onclick="loadContacts()">Show data</button>
-                <button onclick="downloadCSV()">Download CSV</button>
+
+                <!-- Export dropdown -->
+                <div class="export-dropdown">
+
+                    <div class="export-split">
+                        <button onclick="downloadFile('csv')">Export</button>
+
+                        <button class="arrow-btn" onclick="toggleExportMenu(event)">
+                            ▼
+                        </button>
+                    </div>
+
+                    <div id="exportMenu" class="export-menu">
+                        <div onclick="downloadFile('csv')">CSV</div>
+                        <div onclick="downloadFile('xlsx')">Excel</div>
+                        <div onclick="downloadFile('pdf')">PDF</div>
+                    </div>
+
+                </div>
 
             </div>
 
@@ -196,13 +212,11 @@
         </div>
     </div>
 
-    <script>
-        window.BASE_PATH = "..";
-    </script>
-
-    <script src="../assets/js/scripts.js"></script>
+    <script src="../assets/js/admin-export.js"></script>
     <script src="../assets/js/admin.js"></script>
+    <script src="../assets/js/scripts.js"></script>
 
 </body>
+
 
 </html>

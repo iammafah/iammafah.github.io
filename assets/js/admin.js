@@ -93,7 +93,20 @@ function loadMore() {
 }
 
 /* ================= CSV DOWNLOAD ================= */
-function downloadCSV() {
+
+/* ================= EXPORT DOWNLOAD ================= */
+
+const DOWNLOAD_BASE =
+  "https://socialcore-backend.onrender.com/iammafah/api/admin/contacts/download";
+
+/* dropdown toggle */
+function toggleExportMenu(event) {
+  event.stopPropagation();
+  document.getElementById("exportMenu").classList.toggle("show");
+}
+
+/* download handler */
+function downloadFile(type) {
   const adminId = document.getElementById("adminIdInput").value;
 
   if (!adminId) {
@@ -101,5 +114,29 @@ function downloadCSV() {
     return;
   }
 
-  window.location.href = `${DOWNLOAD_URL}?admin_id=${adminId}`;
+  let url = "";
+
+  if (type === "csv") {
+    url = `${DOWNLOAD_BASE}?admin_id=${adminId}`;
+  }
+
+  if (type === "xlsx") {
+    url = `${DOWNLOAD_BASE}/xlsx?admin_id=${adminId}`;
+  }
+
+  if (type === "pdf") {
+    url = `${DOWNLOAD_BASE}/pdf?admin_id=${adminId}`;
+  }
+
+  window.location.href = url;
+
+  document.getElementById("exportMenu").classList.remove("show");
 }
+
+/* click outside close */
+document.addEventListener("click", function (event) {
+  const menu = document.getElementById("exportMenu");
+  if (menu && !menu.contains(event.target)) {
+    menu.classList.remove("show");
+  }
+});
