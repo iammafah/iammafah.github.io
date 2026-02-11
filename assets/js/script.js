@@ -120,37 +120,54 @@ function initPortfolioFilter() {
 ================================================== */
 
 function initContactForm() {
-  const form = document.querySelector('[data-form]'); // form select
-  const inputs = document.querySelectorAll('[data-form-input]'); // inputs
-  const btn = document.querySelector('[data-form-btn]'); // submit button
-  const status = document.querySelector('[data-form-status]'); // status text
+  const form = document.querySelector('[data-form]');
+  const inputs = document.querySelectorAll('[data-form-input]');
+  const btn = document.querySelector('[data-form-btn]');
+  const status = document.querySelector('[data-form-status]');
 
-  if (!form || !btn || !inputs.length) return; // safety check
+  if (!form || !btn || !inputs.length) return;
 
+  // enable / disable button based on validation
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       form.checkValidity()
-        ? btn.removeAttribute('disabled') // enable button
-        : btn.setAttribute('disabled', ''); // disable button
+        ? btn.removeAttribute('disabled')
+        : btn.setAttribute('disabled', '');
     });
   });
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     status.textContent = "";
     btn.setAttribute('disabled', '');
     btn.querySelector("span").innerText = "Sending...";
 
+    // TURNSTILE TOKEN READ
+    const tokenField = document.querySelector(
+      '[name="cf-turnstile-response"]'
+    );
+
+    const token = tokenField ? tokenField.value : null;
+
+    if (!token) {
+      status.textContent = "Please complete verification.";
+      status.className = "form-status error";
+      btn.removeAttribute('disabled');
+      btn.querySelector("span").innerText = "Send Message";
+      return;
+    }
+
     const payload = {
-      FullName: form.fullname.value.trim(), 
-      Email: form.email.value.trim(), 
-      Message: form.message.value.trim() 
+      FullName: form.fullname.value.trim(),
+      Email: form.email.value.trim(),
+      Message: form.message.value.trim(),
+      token: token
     };
 
     try {
-      const controller = new AbortController(); // timeout controller
-      setTimeout(() => controller.abort(), 10000); // 10 sec timeout
+      const controller = new AbortController();
+      setTimeout(() => controller.abort(), 10000);
 
       const res = await fetch(
         "https://socialcore-backend.onrender.com/iammafah/api/contacts",
@@ -162,11 +179,11 @@ function initContactForm() {
         }
       );
 
-      const text = await res.text(); // always read as text first
+      const text = await res.text();
 
       let data;
       try {
-        data = JSON.parse(text); // try JSON parse
+        data = JSON.parse(text);
       } catch {
         throw new Error("Server temporarily unavailable");
       }
@@ -179,6 +196,12 @@ function initContactForm() {
       status.className = "form-status success";
 
       form.reset();
+
+      // reset turnstile widget
+      if (window.turnstile) {
+        turnstile.reset();
+      }
+
       btn.querySelector("span").innerText = "Send Message";
       btn.setAttribute('disabled', '');
 
