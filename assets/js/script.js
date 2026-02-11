@@ -123,6 +123,7 @@ function initContactForm() {
 
   if (!form || !btn || !inputs.length) return;
 
+  // enable/disable submit button
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       form.checkValidity()
@@ -138,11 +139,15 @@ function initContactForm() {
     btn.setAttribute('disabled', '');
     btn.querySelector("span").innerText = "Sending...";
 
-    // TURNSTILE TOKEN (correct way)
+    // TURNSTILE TOKEN (stable method)
     let token = null;
-    if (window.turnstile) {
-      token = turnstile.getResponse();
-    }
+
+    try {
+      const tokenInput = document.querySelector(
+        '[name="cf-turnstile-response"]'
+      );
+      token = tokenInput?.value;
+    } catch {}
 
     if (!token) {
       status.textContent = "Please complete verification.";
@@ -160,16 +165,12 @@ function initContactForm() {
     };
 
     try {
-      const controller = new AbortController();
-      setTimeout(() => controller.abort(), 30000);
-
       const res = await fetch(
         "https://socialcore-backend.onrender.com/iammafah/api/contacts",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-          signal: controller.signal
+          body: JSON.stringify(payload)
         }
       );
 
@@ -199,6 +200,7 @@ function initContactForm() {
     }
   });
 }
+
 
 
 /* ==================================================
