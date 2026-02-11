@@ -123,7 +123,6 @@ function initContactForm() {
 
   if (!form || !btn || !inputs.length) return;
 
-  // enable / disable button
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       form.checkValidity()
@@ -139,11 +138,11 @@ function initContactForm() {
     btn.setAttribute('disabled', '');
     btn.querySelector("span").innerText = "Sending...";
 
-    const tokenField = form.querySelector(
-      '[name="cf-turnstile-response"]'
-    );
-
-    const token = tokenField ? tokenField.value : null;
+    // TURNSTILE TOKEN (correct way)
+    let token = null;
+    if (window.turnstile) {
+      token = turnstile.getResponse();
+    }
 
     if (!token) {
       status.textContent = "Please complete verification.";
@@ -200,7 +199,6 @@ function initContactForm() {
     }
   });
 }
-
 
 
 /* ==================================================
