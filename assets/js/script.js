@@ -123,6 +123,7 @@ function initContactForm() {
 
   if (!form || !btn || !inputs.length) return;
 
+  // enable / disable button
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       form.checkValidity()
@@ -161,8 +162,6 @@ function initContactForm() {
 
     try {
       const controller = new AbortController();
-
-      // Render cold start ke liye 30 sec
       setTimeout(() => controller.abort(), 30000);
 
       const res = await fetch(
@@ -175,16 +174,10 @@ function initContactForm() {
         }
       );
 
-      // response safe parse
-      let data = null;
-      try {
-        data = await res.json();
-      } catch {
-        throw new Error("Backend not responding");
-      }
+      const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || "Request failed");
+        throw new Error(data.error || "Failed to send message");
       }
 
       status.textContent = "Your message was sent successfully.";
