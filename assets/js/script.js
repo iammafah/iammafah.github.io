@@ -123,7 +123,6 @@ function initContactForm() {
 
   if (!form || !btn || !inputs.length) return;
 
-  // enable/disable submit button
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       form.checkValidity()
@@ -139,15 +138,7 @@ function initContactForm() {
     btn.setAttribute('disabled', '');
     btn.querySelector("span").innerText = "Sending...";
 
-    // TURNSTILE TOKEN (stable method)
-    let token = null;
-
-    try {
-      const tokenInput = document.querySelector(
-        '[name="cf-turnstile-response"]'
-      );
-      token = tokenInput?.value;
-    } catch {}
+    const token = TURNSTILE_TOKEN;
 
     if (!token) {
       status.textContent = "Please complete verification.";
@@ -184,6 +175,7 @@ function initContactForm() {
       status.className = "form-status success";
 
       form.reset();
+      TURNSTILE_TOKEN = null;
 
       if (window.turnstile) {
         turnstile.reset();
@@ -200,6 +192,7 @@ function initContactForm() {
     }
   });
 }
+
 
 
 
