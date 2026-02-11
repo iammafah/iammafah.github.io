@@ -115,10 +115,6 @@ function initPortfolioFilter() {
   });
 }
 
-/* ==================================================
-   CONTACT FORM
-================================================== */
-
 function initContactForm() {
   const form = document.querySelector('[data-form]');
   const inputs = document.querySelectorAll('[data-form-input]');
@@ -127,7 +123,6 @@ function initContactForm() {
 
   if (!form || !btn || !inputs.length) return;
 
-  // enable / disable button based on validation
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       form.checkValidity()
@@ -143,8 +138,7 @@ function initContactForm() {
     btn.setAttribute('disabled', '');
     btn.querySelector("span").innerText = "Sending...";
 
-    // TURNSTILE TOKEN READ
-    const tokenField = document.querySelector(
+    const tokenField = form.querySelector(
       '[name="cf-turnstile-response"]'
     );
 
@@ -167,7 +161,9 @@ function initContactForm() {
 
     try {
       const controller = new AbortController();
-      setTimeout(() => controller.abort(), 10000);
+
+      // Render cold start ke liye 30 sec
+      setTimeout(() => controller.abort(), 30000);
 
       const res = await fetch(
         "https://socialcore-backend.onrender.com/iammafah/api/contacts",
@@ -179,17 +175,16 @@ function initContactForm() {
         }
       );
 
-      const text = await res.text();
-
-      let data;
+      // response safe parse
+      let data = null;
       try {
-        data = JSON.parse(text);
+        data = await res.json();
       } catch {
-        throw new Error("Server temporarily unavailable");
+        throw new Error("Backend not responding");
       }
 
       if (!res.ok) {
-        throw new Error(data.message || "Failed to send message");
+        throw new Error(data.error || "Request failed");
       }
 
       status.textContent = "Your message was sent successfully.";
@@ -197,7 +192,6 @@ function initContactForm() {
 
       form.reset();
 
-      // reset turnstile widget
       if (window.turnstile) {
         turnstile.reset();
       }
