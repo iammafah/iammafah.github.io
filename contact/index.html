@@ -232,6 +232,14 @@
     </main>
     <script>
         window.BASE_PATH = "..";
+
+        /* TURNSTILE GLOBAL TOKEN */
+        let TURNSTILE_TOKEN = null;
+
+        function onTurnstileSuccess(token) {
+            TURNSTILE_TOKEN = token;
+            console.log("Turnstile token received:", token);
+        }
     </script>
     <!-- ================= SCRIPTS ================= -->
     <script src="../assets/js/script.min.main.iammafah.js"></script>

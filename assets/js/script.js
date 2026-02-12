@@ -116,31 +116,29 @@ function initPortfolioFilter() {
 }
 
 function initContactForm() {
-  const form = document.querySelector('[data-form]');
-  const inputs = document.querySelectorAll('[data-form-input]');
-  const btn = document.querySelector('[data-form-btn]');
-  const status = document.querySelector('[data-form-status]');
+  const form = document.querySelector('[data-form]'); // contact form
+  const inputs = document.querySelectorAll('[data-form-input]'); // form inputs
+  const btn = document.querySelector('[data-form-btn]'); // submit button
+  const status = document.querySelector('[data-form-status]'); // status text
 
-  if (!form || !btn || !inputs.length) return;
+  if (!form || !btn || !inputs.length) return; // safety check
 
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       form.checkValidity()
-        ? btn.removeAttribute('disabled')
-        : btn.setAttribute('disabled', '');
+        ? btn.removeAttribute('disabled') // enable button
+        : btn.setAttribute('disabled', ''); // disable button
     });
   });
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // stop page reload
 
     status.textContent = "";
     btn.setAttribute('disabled', '');
     btn.querySelector("span").innerText = "Sending...";
 
-    const token = TURNSTILE_TOKEN;
-
-    if (!token) {
+    if (!TURNSTILE_TOKEN) { // captcha check
       status.textContent = "Please complete verification.";
       status.className = "form-status error";
       btn.removeAttribute('disabled');
@@ -149,10 +147,10 @@ function initContactForm() {
     }
 
     const payload = {
-      FullName: form.fullname.value.trim(),
-      Email: form.email.value.trim(),
-      Message: form.message.value.trim(),
-      token: token
+      FullName: form.fullname.value.trim(), // name
+      Email: form.email.value.trim(), // email
+      Message: form.message.value.trim(), // message
+      token: TURNSTILE_TOKEN // captcha token
     };
 
     try {
@@ -174,11 +172,11 @@ function initContactForm() {
       status.textContent = "Your message was sent successfully.";
       status.className = "form-status success";
 
-      form.reset();
-      TURNSTILE_TOKEN = null;
+      form.reset(); // reset form
+      TURNSTILE_TOKEN = null; // clear token
 
       if (window.turnstile) {
-        turnstile.reset();
+        turnstile.reset(); // reset widget
       }
 
       btn.querySelector("span").innerText = "Send Message";
