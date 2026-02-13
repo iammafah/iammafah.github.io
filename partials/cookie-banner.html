@@ -1,0 +1,93 @@
+<style>
+.cookie-banner{
+  position:fixed; /* bottom banner */
+  bottom:0;
+  left:0;
+  right:0;
+  background:#111;
+  color:#fff;
+  padding:14px 28px;
+  display:none;
+  border-top:1px solid #d4af37;
+  z-index:999999;
+  font-family:Poppins, Arial, sans-serif;
+}
+
+/* inner layout */
+.cookie-banner > div{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+/* privacy link */
+.cookie-banner a{
+  color:#d4af37;
+  text-decoration:none;
+}
+
+/* button group */
+.cookie-actions{
+  display:flex;
+  gap:10px;
+}
+
+/* button */
+.cookie-btn{
+  border:1px solid #d4af37;
+  background:transparent;
+  color:#d4af37;
+  padding:8px 14px;
+  cursor:pointer;
+  border-radius:6px;
+  font-weight:600;
+}
+
+.cookie-btn:hover{
+  background:#d4af37;
+  color:#111;
+}
+
+/* MOBILE DESIGN */
+@media(max-width:600px){
+
+  .cookie-banner{
+    left:50%;
+    right:auto;
+    bottom:16px;
+    transform:translateX(-50%);
+    width:92%;
+    border:1px solid #d4af37;
+    border-radius:12px;
+    border-top:none;
+    padding:16px;
+  }
+
+  .cookie-banner > div{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .cookie-actions{
+    width:100%;
+    justify-content:flex-end;
+  }
+}
+</style>
+
+<div id="cookie-banner" class="cookie-banner">
+  <div>
+    <div>
+      This website uses cookies and Google Analytics.
+      See our <a href="/privacy-policy">Privacy Policy</a>
+    </div>
+
+    <div class="cookie-actions">
+      <button id="accept-cookies" class="cookie-btn">Accept</button>
+      <button id="decline-cookies" class="cookie-btn">Decline</button>
+    </div>
+  </div>
+</div>

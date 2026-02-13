@@ -206,16 +206,29 @@ async function loadLayout() {
     if (headerEl) {
       const res = await fetch(`${base}/partials/header.html`);
       headerEl.innerHTML = await res.text();
-
-      if (typeof initSidebar === "function") {
-        initSidebar();
-      }
     }
 
     const footerEl = document.getElementById("footer");
     if (footerEl) {
       const res = await fetch(`${base}/partials/footer.html`);
       footerEl.innerHTML = await res.text();
+    }
+
+    // COOKIE BANNER LOAD
+    let cookieContainer = document.getElementById("cookie-container");
+
+    if (!cookieContainer) {
+      cookieContainer = document.createElement("div");
+      cookieContainer.id = "cookie-container";
+      document.body.appendChild(cookieContainer);
+    }
+
+    const cookieRes = await fetch(`${base}/partials/cookie-banner.html`);
+    cookieContainer.innerHTML = await cookieRes.text();
+
+    // INIT COOKIE SYSTEM
+    if (window.initCookieSystem) {
+      initCookieSystem();
     }
 
   } catch (err) {
