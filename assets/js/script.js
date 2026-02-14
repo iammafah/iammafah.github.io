@@ -13,16 +13,14 @@ function toggleActive(el) {
 ================================================== */
 
 function initSidebar() {
-  const sidebar = document.querySelector('[data-sidebar]');
-  const sidebarBtn = document.querySelector('[data-sidebar-btn]');
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-sidebar-btn]');
+    if (!btn) return;
 
-  if (!sidebar || !sidebarBtn) return;
-
-  sidebarBtn.addEventListener('click', () => {
-    toggleActive(sidebar);
+    const sidebar = document.querySelector('[data-sidebar]');
+    if (sidebar) sidebar.classList.toggle('active');
   });
 }
-
 /* ==================================================
    TESTIMONIAL MODAL
 ================================================== */
@@ -242,8 +240,9 @@ async function loadLayout() {
 /* ==================================================
    APP INIT
 ================================================== */
-document.addEventListener('DOMContentLoaded', () => {
-  loadLayout();
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadLayout(); // wait until header/footer load
+
   initSidebar();
   initTestimonials();
   initPortfolioFilter();
