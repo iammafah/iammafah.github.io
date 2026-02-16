@@ -374,7 +374,6 @@ main {
   max-height: 900px;
 }
 
-
 .sidebar-info {
   position: relative;
   display: flex;
@@ -438,6 +437,7 @@ main {
 
 .info_more-btn span { display: none; }
 
+/* CONTACT SECTION */
 .sidebar-info_more {
   opacity: 0;
   visibility: hidden;
@@ -495,20 +495,11 @@ main {
   font-size: 18px;
 }
 
-
 .social-item .social-link:hover { color: var(--light-gray); }
+
 .contact-link {
   pointer-events: auto;
 }
-.sidebar-info_more {
-  pointer-events: none;
-}
-
-.sidebar.active .sidebar-info_more {
-  pointer-events: auto;
-}
-
-
 
 
 /*-----------------------------------*\

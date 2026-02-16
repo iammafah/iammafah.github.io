@@ -17,10 +17,13 @@ function initSidebar() {
     const btn = e.target.closest('[data-sidebar-btn]');
     if (!btn) return;
 
-    const sidebar = document.querySelector('[data-sidebar]');
-    if (sidebar) sidebar.classList.toggle('active');
+    const moreInfo = document.querySelector('.sidebar-info_more');
+    if (moreInfo) {
+      moreInfo.classList.toggle('active');
+    }
   });
 }
+
 /* ==================================================
    TESTIMONIAL MODAL
 ================================================== */
