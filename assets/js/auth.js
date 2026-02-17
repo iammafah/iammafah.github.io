@@ -8,20 +8,27 @@ import {
   sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+const BACKEND_URL = "https://identity-gateway-service.onrender.com";
+
 async function sendToken(user) {
-  const token = await user.getIdToken();
+  try {
+    const token = await user.getIdToken();
 
-  await fetch("https://identity-gateway-service.onrender.com/auth/login", {
-    method: "POST",
-    headers: {
-      "Authorization": "Bearer " + token
-    }
-  });
+    await fetch(`${BACKEND_URL}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    });
+  } catch (err) {
+    console.error("Backend login failed:", err);
+  }
 
+  // redirect always hona chahiye
   window.location.href = "https://iammafah.site/";
 }
 
-/* EMAIL SIGNUP (auto login + verification mail) */
+/* EMAIL SIGNUP */
 window.signup = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -29,14 +36,15 @@ window.signup = async () => {
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
 
-    // verification mail send
     await sendEmailVerification(cred.user);
-
-    // auto login
     await sendToken(cred.user);
 
   } catch (err) {
-    alert(err.message);
+    if (err.code === "auth/email-already-in-use") {
+      alert("Account already exists. Please login.");
+    } else {
+      alert(err.message);
+    }
   }
 };
 
