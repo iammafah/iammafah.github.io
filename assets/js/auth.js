@@ -4,48 +4,63 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   FacebookAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+  sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 async function sendToken(user) {
   const token = await user.getIdToken();
 
-  await fetch("http://127.0.0.1:5000/auth/login", {
+  await fetch("https://identity-gateway-service.onrender.com/auth/login", {
     method: "POST",
     headers: {
       "Authorization": "Bearer " + token
     }
   });
 
-  window.location.href = "/";
+  window.location.href = "https://iammafah.site/";
 }
 
-// EMAIL SIGNUP
+/* EMAIL SIGNUP (auto login + verification mail) */
 window.signup = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const cred = await createUserWithEmailAndPassword(auth, email, password);
-  await sendToken(cred.user);
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+
+    // verification mail send
+    await sendEmailVerification(cred.user);
+
+    // auto login
+    await sendToken(cred.user);
+
+  } catch (err) {
+    alert(err.message);
+  }
 };
 
-// EMAIL LOGIN
+/* EMAIL LOGIN */
 window.login = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const cred = await signInWithEmailAndPassword(auth, email, password);
-  await sendToken(cred.user);
+  try {
+    const cred = await signInWithEmailAndPassword(auth, email, password);
+    await sendToken(cred.user);
+  } catch (err) {
+    alert(err.message);
+  }
 };
 
-// GOOGLE
+/* GOOGLE LOGIN */
 window.googleLogin = async () => {
   const provider = new GoogleAuthProvider();
   const result = await signInWithPopup(auth, provider);
   await sendToken(result.user);
 };
 
-// FACEBOOK
+/* FACEBOOK LOGIN */
 window.facebookLogin = async () => {
   const provider = new FacebookAuthProvider();
   const result = await signInWithPopup(auth, provider);
