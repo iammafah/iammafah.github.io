@@ -8,24 +8,9 @@ import {
   sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-const BACKEND_URL = "https://identity-gateway-service.onrender.com";
-
+/* redirect to loader page */
 async function sendToken(user) {
-  try {
-    const token = await user.getIdToken();
-
-    await fetch(`${BACKEND_URL}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Authorization": "Bearer " + token
-      }
-    });
-  } catch (err) {
-    console.error("Backend login failed:", err);
-  }
-
-  // redirect always hona chahiye
-  window.location.href = "https://iammafah.site/";
+  window.location.href = "/redirect.html";
 }
 
 /* EMAIL SIGNUP */
@@ -35,10 +20,8 @@ window.signup = async () => {
 
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
-
     await sendEmailVerification(cred.user);
     await sendToken(cred.user);
-
   } catch (err) {
     if (err.code === "auth/email-already-in-use") {
       alert("Account already exists. Please login.");

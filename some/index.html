@@ -1,36 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>URL Path Demo</title>
+  <meta charset="UTF-8"> <!-- encoding -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive -->
+  <title>IAMAMA Demo</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<h2>Fake Chat Link</h2>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
 
-<button onclick="openChat()">Open Chat</button>
-<p id="info"></p>
+  <!-- Heading -->
+  <h1 class="text-4xl font-bold mb-6 animate-bounce">
+    Welcome to IAMAMA
+  </h1>
 
-<script>
-  function openChat() {
-    const id = crypto.randomUUID(); // unique id
+  <!-- Card -->
+  <div class="bg-white shadow-2xl rounded-2xl p-8 w-80 md:w-96 text-center">
 
-    // URL change without reload
-    history.pushState({}, "", "/c/" + id);
+    <!-- Animated text -->
+    <p class="text-gray-600 mb-4 animate-pulse">
+      Loading dashboard...
+    </p>
 
-    document.getElementById("info").innerText =
-      "Current URL: " + window.location.pathname;
-  }
+    <!-- Loader -->
+    <div class="flex justify-center mb-4">
+      <div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+    </div>
 
-  // page load par URL read karna
-  window.onload = function () {
-    const path = window.location.pathname;
+    <!-- Button -->
+    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition">
+      Continue
+    </button>
 
-    if (path.startsWith("/c/")) {
-      document.getElementById("info").innerText =
-        "Opened chat id: " + path.split("/c/")[1];
-    }
-  };
-</script>
+  </div>
 
 </body>
 </html>
