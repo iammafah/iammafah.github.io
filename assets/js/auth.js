@@ -10,7 +10,7 @@ import {
 
 /* redirect to loader page */
 async function sendToken(user) {
-  window.location.href = "/redirect.html";
+  window.location.href = "./redirect.html";
 }
 
 /* EMAIL SIGNUP */

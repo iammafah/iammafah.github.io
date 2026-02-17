@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Signup</title>
 
+<script type="module" src="../assets/js/auth.js"></script>
+
 <style>
-/* Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,9 +15,8 @@
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-/* Page */
 body {
-  background: #f5f7fb;
+  background: linear-gradient(120deg, #eef2ff, #f8fafc);
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -24,27 +24,51 @@ body {
   padding: 16px;
 }
 
-/* Container */
 .auth-wrapper {
   width: 100%;
   max-width: 420px;
 }
 
-/* Card */
 .auth-card {
-  background: #fff;
-  padding: 28px;
-  border-radius: 14px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
 }
 
-/* Title */
-.auth-card h2 {
+/* Logo section */
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.logo-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #4f46e5;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.brand {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+h2 {
   text-align: center;
   margin-bottom: 20px;
 }
 
-/* Inputs */
 input {
   width: 100%;
   padding: 13px;
@@ -59,7 +83,6 @@ input:focus {
   border-color: #4f46e5;
 }
 
-/* Buttons */
 button {
   width: 100%;
   padding: 13px;
@@ -67,32 +90,22 @@ button {
   border: none;
   cursor: pointer;
   font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  margin-top: 6px;
+  transition: 0.2s;
 }
 
-/* Primary */
+button:hover {
+  transform: translateY(-1px);
+}
+
 .primary-btn {
   background: #4f46e5;
   color: white;
-  margin-top: 4px;
 }
 
-/* Divider */
-.divider {
-  text-align: center;
-  margin: 16px 0;
-  color: #888;
-  font-size: 14px;
-}
-
-/* Social buttons */
 .google-btn {
   background: white;
   border: 1px solid #ddd;
-  margin-bottom: 10px;
 }
 
 .facebook-btn {
@@ -100,27 +113,10 @@ button {
   color: white;
 }
 
-.social-icon {
-  width: 18px;
-}
-
-/* Tablet */
-@media (min-width: 600px) {
-  .auth-card {
-    padding: 32px;
-  }
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-  body {
-    background: linear-gradient(120deg, #eef2ff, #f8fafc);
-  }
-
-  .auth-card {
-    padding: 36px;
-    border-radius: 16px;
-  }
+hr {
+  margin: 18px 0;
+  border: none;
+  border-top: 1px solid #eee;
 }
 </style>
 </head>
@@ -129,26 +125,26 @@ button {
 
 <div class="auth-wrapper">
   <div class="auth-card">
+
+    <!-- Logo -->
+    <div class="logo">
+      <div class="logo-circle">IA</div>
+    </div>
+
+    <div class="brand">IAMAMA</div>
+
     <h2>Create Account</h2>
 
-    <input placeholder="Email">
-    <input type="password" placeholder="Password">
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
 
-    <button class="primary-btn">Signup</button>
+    <button class="primary-btn" onclick="signup()">Signup</button>
 
-    <div class="divider">OR</div>
+    <hr>
 
-    <button class="google-btn">
-      <img class="social-icon"
-      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg">
-      Continue with Google
-    </button>
+    <button class="google-btn" onclick="googleLogin()">Continue with Google</button>
+    <button class="facebook-btn" onclick="facebookLogin()">Continue with Facebook</button>
 
-    <button class="facebook-btn">
-      <img class="social-icon"
-      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg">
-      Continue with Facebook
-    </button>
   </div>
 </div>
 
