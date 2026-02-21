@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create account | iammafah</title>
+
+<script type="module" src="../assets/js/auth.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Inter",sans-serif;
+}
+
+/* ===== BODY ===== */
+body{
+  background:#f1f3f4;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ===== CARD ===== */
+.auth-card{
+  width:100%;
+  max-width:420px;
+  background:#ffffff;
+  padding:50px 42px;
+  border-radius:12px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.06);
+  text-align:center;
+  transition:0.2s ease;
+}
+
+.auth-card:hover{
+  transform:translateY(-2px);
+}
+
+/* ===== TITLE ===== */
+.auth-title{
+  font-size:26px;
+  font-weight:600;
+  color:#202124;
+  margin-bottom:6px;
+}
+
+.auth-sub{
+  font-size:14px;
+  color:#5f6368;
+  margin-bottom:34px;
+}
+
+/* ===== BUTTON ===== */
+.auth-btn{
+  width:100%;
+  height:48px;
+  border-radius:6px;
+  font-size:14px;
+  font-weight:500;
+  border:1px solid #dadce0;
+  background:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  cursor:pointer;
+  transition:0.2s ease;
+  margin-bottom:18px;
+}
+
+.auth-btn img{
+  width:18px;
+}
+
+.auth-btn:hover{
+  background:#f8f9fa;
+  border-color:#c6c6c6;
+}
+
+.auth-btn:active{
+  background:#e8eaed;
+}
+
+.auth-btn:focus{
+  outline:2px solid #1a73e8;
+  outline-offset:2px;
+}
+
+/* ===== DIVIDER ===== */
+.divider{
+  display:flex;
+  align-items:center;
+  margin:26px 0;
+}
+
+.divider::before,
+.divider::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:#dadce0;
+}
+
+.divider span{
+  margin:0 14px;
+  font-size:13px;
+  color:#5f6368;
+}
+
+/* ===== TERMS ===== */
+.auth-terms{
+  font-size:12px;
+  color:#5f6368;
+  margin-top:26px;
+  line-height:1.6;
+}
+
+.auth-terms a{
+  color:#1a73e8;
+  text-decoration:none;
+}
+
+.auth-terms a:hover{
+  text-decoration:underline;
+}
+
+/* ===== LOGIN LINK ===== */
+.auth-login{
+  margin-top:20px;
+  font-size:14px;
+  color:#5f6368;
+}
+
+.auth-login a{
+  color:#1a73e8;
+  text-decoration:none;
+  font-weight:500;
+}
+
+.auth-login a:hover{
+  text-decoration:underline;
+}
+
+@media(max-width:480px){
+  .auth-card{
+    margin:20px;
+    padding:40px 28px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="auth-card">
+
+  <h1 class="auth-title">Create your account</h1>
+  <p class="auth-sub">Join iammafah to get started</p>
+
+  <button class="auth-btn" onclick="googleLogin()">
+    <img src="https://www.svgrepo.com/show/475656/google-color.svg">
+    Sign up with Google
+  </button>
+
+  <div class="divider">
+    <span>or</span>
+  </div>
+
+  <button class="auth-btn" onclick="facebookLogin()">
+    <img src="https://www.svgrepo.com/show/475647/facebook-color.svg">
+    Sign up with Facebook
+  </button>
+
+  <p class="auth-terms">
+    By creating an account, you agree to our 
+    <a href="../terms/">Terms of Service</a> and 
+    <a href="../private-policy/">Privacy Policy</a>.
+  </p>
+
+  <p class="auth-login">
+    Already have an account? 
+    <a href="../login/">Sign in</a>
+  </p>
+
+</div>
+
+</body>
+</html>
