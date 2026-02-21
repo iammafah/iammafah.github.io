@@ -23,6 +23,7 @@
     });
   }
 
+
   function initCookieSystem() {
     const banner = document.getElementById("cookie-banner");
     const btn = document.getElementById("accept-cookies");
