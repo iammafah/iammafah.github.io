@@ -1,142 +1,149 @@
 const API_URL = "https://socialcore-backend.onrender.com/iammafah/api/admin/contacts";
-const DOWNLOAD_URL = "https://socialcore-backend.onrender.com/iammafah/api/admin/contacts/download";
+const DOWNLOAD_BASE = "https://socialcore-backend.onrender.com/iammafah/api/admin/contacts/download";
 
 let allContacts = [];
 let visibleCount = 10;
 
-function showMessage(text, type = "error") {
-  let box = document.getElementById("adminMessage");
+/* ===== ELEMENTS ===== */
+const adminInput = document.getElementById("adminIdInput");
+const searchInput = document.getElementById("searchInput");
+const loadBtn = document.getElementById("loadBtn");
+const exportBtn = document.getElementById("exportBtn");
+const exportMenu = document.getElementById("exportMenu");
+const tableBody = document.getElementById("contactTableBody");
+const loader = document.getElementById("loader");
+const loadMoreBtn = document.getElementById("loadMoreBtn");
+const messageBox = document.getElementById("adminMessage");
 
-  if (!box) {
-    box = document.createElement("div");
-    box.id = "adminMessage";
-    box.style.marginBottom = "10px";
-    box.style.padding = "10px";
-    box.style.borderRadius = "8px";
-    box.style.fontWeight = "500px";
-    box.style.position = "relative";
-
-    document.querySelector(".card").prepend(box);
-  }
-
-  box.style.background = type === "error" ? "#ffe5e5" : "#e7f7e7";
-  box.innerHTML = `
-    ${text}
-    <span style="float:right; cursor:pointer;" onclick="this.parentElement.remove()">✖</span>
-  `;
+/* ===== MESSAGE ===== */
+function showMessage(text,type="error"){
+messageBox.style.display="block";
+messageBox.style.background = type==="error" ? "#fee2e2" : "#dcfce7";
+messageBox.innerText = text;
 }
 
-async function loadContacts() {
-  const adminId = document.getElementById("adminIdInput").value;
-  const loader = document.getElementById("loader");
+/* ===== LOAD DATA ===== */
+async function loadContacts(){
 
-  if (!adminId) {
-    showMessage("Admin id required");
-    return;
-  }
-
-  loader.style.display = "block";
-
-  try {
-    const res = await fetch(API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ admin_id: Number(adminId) })
-    });
-
-    const data = await res.json();
-    loader.style.display = "none";
-
-    if (!Array.isArray(data)) {
-      showMessage(data.error || "Invalid admin");
-      return;
-    }
-
-    allContacts = data.reverse();
-    visibleCount = 10;
-    renderContacts();
-
-    showMessage("Contacts loaded successfully", "success");
-
-  } catch (err) {
-    loader.style.display = "none";
-    console.error(err);
-    showMessage("Server error");
-  }
+const adminId = adminInput.value;
+if(!adminId){
+showMessage("Admin ID required");
+return;
 }
 
-function renderContacts() {
-  const tableBody = document.getElementById("contactTableBody");
-  tableBody.innerHTML = "";
+loader.style.display="block";
 
-  allContacts.slice(0, visibleCount).forEach(contact => {
-    const row = document.createElement("tr");
+try{
 
-    row.innerHTML = `
-      <td>${contact.FullName}</td>
-      <td>${contact.Email}</td>
-      <td>${contact.Message}</td>
-      <td>${contact.country}</td>
-      <td>${new Date(contact.created_at).toLocaleString()}</td>
-    `;
+const res = await fetch(API_URL,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({admin_id:Number(adminId)})
+});
 
-    tableBody.appendChild(row);
-  });
+const data = await res.json();
+loader.style.display="none";
 
-  document.getElementById("loadMoreBtn").style.display =
-    visibleCount < allContacts.length ? "block" : "none";
+if(!Array.isArray(data)){
+showMessage(data.error || "Invalid admin");
+return;
 }
 
-function loadMore() {
-  visibleCount += 10;
-  renderContacts();
+allContacts = data.reverse();
+visibleCount = 10;
+
+renderContacts();
+updateStats();
+showMessage("Data Loaded","success");
+
+}catch(err){
+loader.style.display="none";
+showMessage("Server Error");
 }
 
-/* ================= CSV DOWNLOAD ================= */
-
-/* ================= EXPORT DOWNLOAD ================= */
-
-const DOWNLOAD_BASE =
-  "https://socialcore-backend.onrender.com/iammafah/api/admin/contacts/download";
-
-/* dropdown toggle */
-function toggleExportMenu(event) {
-  event.stopPropagation();
-  document.getElementById("exportMenu").classList.toggle("show");
 }
 
-/* download handler */
-function downloadFile(type) {
-  const adminId = document.getElementById("adminIdInput").value;
+/* ===== RENDER TABLE ===== */
+function renderContacts(){
 
-  if (!adminId) {
-    showMessage("Enter admin id first");
-    return;
-  }
+const query = searchInput.value.toLowerCase();
 
-  let url = "";
+const filtered = allContacts.filter(c =>
+c.FullName.toLowerCase().includes(query) ||
+c.Email.toLowerCase().includes(query)
+);
 
-  if (type === "csv") {
-    url = `${DOWNLOAD_BASE}?admin_id=${adminId}`;
-  }
+tableBody.innerHTML="";
 
-  if (type === "xlsx") {
-    url = `${DOWNLOAD_BASE}/xlsx?admin_id=${adminId}`;
-  }
+filtered.slice(0,visibleCount).forEach(contact=>{
 
-  if (type === "pdf") {
-    url = `${DOWNLOAD_BASE}/pdf?admin_id=${adminId}`;
-  }
+const row = document.createElement("tr");
 
-  window.location.href = url;
+row.innerHTML = `
+<td>${contact.FullName}</td>
+<td>${contact.Email}</td>
+<td>${contact.Message}</td>
+<td>${contact.country}</td>
+<td>${new Date(contact.created_at).toLocaleString()}</td>
+`;
 
-  document.getElementById("exportMenu").classList.remove("show");
+tableBody.appendChild(row);
+
+});
+
+loadMoreBtn.style.display =
+visibleCount < filtered.length ? "block" : "none";
+
+document.getElementById("visibleCountText").innerText =
+Math.min(visibleCount,filtered.length);
+
 }
 
-/* click outside close */
-document.addEventListener("click", function (event) {
-  const menu = document.getElementById("exportMenu");
-  if (menu && !menu.contains(event.target)) {
-    menu.classList.remove("show");
-  }
+/* ===== LOAD MORE ===== */
+function loadMore(){
+visibleCount += 10;
+renderContacts();
+}
+
+/* ===== UPDATE STATS ===== */
+function updateStats(){
+document.getElementById("totalCount").innerText = allContacts.length;
+}
+
+/* ===== EXPORT ===== */
+function downloadFile(type){
+
+const adminId = adminInput.value;
+if(!adminId){
+showMessage("Enter Admin ID first");
+return;
+}
+
+let url="";
+if(type==="csv") url=`${DOWNLOAD_BASE}?admin_id=${adminId}`;
+if(type==="xlsx") url=`${DOWNLOAD_BASE}/xlsx?admin_id=${adminId}`;
+if(type==="pdf") url=`${DOWNLOAD_BASE}/pdf?admin_id=${adminId}`;
+
+window.location.href = url;
+exportMenu.classList.remove("show");
+}
+
+/* ===== EVENTS ===== */
+loadBtn.addEventListener("click",loadContacts);
+searchInput.addEventListener("input",renderContacts);
+loadMoreBtn.addEventListener("click",loadMore);
+
+exportBtn.addEventListener("click",(e)=>{
+e.stopPropagation();
+exportMenu.classList.toggle("show");
+});
+
+document.querySelectorAll("#exportMenu div").forEach(item=>{
+item.addEventListener("click",()=>{
+downloadFile(item.dataset.type);
+});
+});
+
+document.addEventListener("click",()=>{
+exportMenu.classList.remove("show");
 });
