@@ -1,30 +1,16 @@
-import { auth } from "./firebase-init.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { auth } from "./firebase-init.js"; // Firebase auth
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"; // Auth listener
 
-onAuthStateChanged(auth, async (user) => {
+onAuthStateChanged(auth, (user) => { // Firebase state ready hone pe
 
-  if (!user) {
-    window.location.href = "/";
-    return;
+  if (!user) { // Agar login nahi hai
+    window.location.href = "/"; // Login page pe bhej do
+    return; // Stop execution
   }
 
-  try {
-    const token = await user.getIdToken();
+  // Agar user hai → backend already login ho chuka hai
+  // Yaha backend call nahi karna
 
-    const response = await fetch("https://identity-gateway-service.onrender.com/auth/login", {
-      method: "POST",
-      headers: {
-        "Authorization": "Bearer " + token
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error("Backend login failed");
-    }
-
-  } catch (err) {
-    console.error("Backend login failed:", err);
-  }
-
-  window.location.href = "/";
+  window.location.href = "/"; // Final protected page
 });
+
